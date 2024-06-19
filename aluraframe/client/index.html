@@ -57,5 +57,10 @@
     <script>
         let negociacaoController = new NegociacaoController();
     </script>
+
+    <script>
+        let Negociacao = new Proxy(new Negociacao(new Date(), 1, 100), {});
+
+    </script>
 </body>
 </html>
