@@ -13,7 +13,7 @@ class NegociacaoController {
 
             get(target, prop, receiver) {
 
-                if(['adiciona', 'esvazia'].includes(prop) && typeof(target[prop]) == typeof(function)) {
+                if(['adiciona', 'esvazia'].includes(prop) && typeof(target[prop]) === 'function') { 
 
                     return function() {
 
