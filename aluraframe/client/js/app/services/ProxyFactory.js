@@ -6,7 +6,7 @@ class ProxyFactory {
 
             get(target, prop, receiver) {
 
-                if(props.includes(prop) && typeof(target[prop]) === 'function') { 
+                if(props.includes(prop) && _ehFuncao(target[prop])) { 
 
                     return function() {
 
@@ -17,11 +17,25 @@ class ProxyFactory {
                 }  
                 
                 return Reflect.get(target, prop, receiver);
-                
+            },
 
+            set(target, prop, value, receiver) {
+                if(props.includes(prop)) {
+                    //target(prop) = value;
+                    acao(target);
+                }
+
+                acao(target);
+                return Reflect.set(target, prop, value, receiver);
             }
 
         });
 
+    }
+
+    static _ehFuncao(func) {
+
+        //return typeof(func) === (function);
+        return typeof(func) == typeof(Function);
     }
 }
