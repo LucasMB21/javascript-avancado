@@ -6,7 +6,7 @@ class ProxyFactory {
 
             get(target, prop, receiver) {
 
-                if(props.includes(prop) && _ehFuncao(target[prop])) { 
+                if(props.includes(prop) && ProxyFactory._ehFuncao(target[prop])) { 
 
                     return function() {
 
@@ -35,7 +35,6 @@ class ProxyFactory {
 
     static _ehFuncao(func) {
 
-        //return typeof(func) === (function);
         return typeof(func) == typeof(Function);
     }
 }
