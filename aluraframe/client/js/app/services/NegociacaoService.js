@@ -1,29 +1,34 @@
 class NegociacaoService {
 
-    obterNegociacoesDaSemana(cb) {
+    obterNegociacoesDaSemana() {
 
-        let xhr = new XMLHttpRequest();
-    
-        xhr.open('GET', 'negociacoes/semana');
-    
-        xhr.onreadystatechange = () => {
-    
-            if (xhr.readyState == 4) {
+        return new Promise((resolve, reject) => {
 
-                if (xhr.status == 200) {
+         let xhr = new XMLHttpRequest();
 
-                     cb(null, JSON.parse(xhr.responseText)
-                     .map(objeto => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)));
+         xhr.open('GET', 'negociacoes/semana');
 
-                } else {
+         xhr.onreadystatechange = () => {
+
+             if (xhr.readyState == 4) {
+
+                 if (xhr.status == 200) {
+
+                     resolve(JSON.parse(xhr.responseText)
+                        .map(objeto => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)));
+
+                 } else {
                     console.log(xhr.responseText);
-                    cb('Não foi possível obter as negociações', null);
-                }
+                    reject('Não foi possível obter as negociações da semana');
+                 }
             }
         };
-    
+        
         xhr.send();
+
+        });
     }
+      
 
     obterNegociacoesDaSemanaAnterior(cb) {
 
@@ -42,7 +47,7 @@ class NegociacaoService {
 
                 } else {
                     console.log(xhr.responseText);
-                    cb('Não foi possível obter as negociações', null);
+                    cb('Não foi possível obter as negociações da semana anterior', null);
                 }
             }
         };
@@ -67,7 +72,7 @@ class NegociacaoService {
 
                 } else {
                     console.log(xhr.responseText);
-                    cb('Não foi possível obter as negociações', null);
+                    cb('Não foi possível obter as negociações da semana retrasada', null);
                 }
             }
         };
