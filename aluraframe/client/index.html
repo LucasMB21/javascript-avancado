@@ -5,6 +5,7 @@
     <title>Negociações</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <script src="js/app/polyfill/es6.js"></script>
     
 </head>
 <body class="container">
@@ -17,7 +18,7 @@
         
         <div class="form-group">
             <label for="data">Data</label>
-            <input type="date" id="data" class="form-control" required autofocus/>        
+            <input type="text" placeholder="dd/mm/aaaa" id="data" class="form-control" required autofocus/>        
         </div>    
         
         <div class="form-group">
@@ -59,7 +60,8 @@
     <script src="js/app/services/NegociacaoService.js"></script>
     <script src="js/app/services/HttpService.js"></script>
     <script>
-        let negociacaoController = new NegociacaoController();
+        var negociacaoController = new NegociacaoController();
     </script>
+    
 </body>
 </html>
